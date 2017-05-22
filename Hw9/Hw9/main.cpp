@@ -16,9 +16,10 @@
 #include <iostream>
 
 using namespace tesseract;
+using namespace std;
 
 int main(int argc, const char * argv[]) {
-    char* image_path = "";
+    char* image_path = (char*)"/Users/Antonio/Documents/openCV/plate1.jpg";
     char *outText;
     
     TessBaseAPI *api = new TessBaseAPI();
@@ -29,7 +30,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // Open input image with leptonica library
-    Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
+    Pix *image = pixRead(image_path);
     api->SetImage(image);
     // Get OCR result
     outText = api->GetUTF8Text();
