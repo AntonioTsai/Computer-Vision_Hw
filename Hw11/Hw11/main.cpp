@@ -28,8 +28,8 @@ void detectAndDisplay( Mat frame );
 
 /** Global variables */
 //-- Note, either copy these two files from opencv/data/haarscascades to your current folder, or change these locations
-String face_cascade_name = "haarcascade_frontalface_alt.xml";
-String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
+String face_cascade_name = "/Users/Antonio/Documents/openCV/haarcascade_frontalface_alt.xml";
+String eyes_cascade_name = "/Users/Antonio/Documents/openCV/haarcascade_eye_tree_eyeglasses.xml";
 CascadeClassifier face_cascade;
 CascadeClassifier eyes_cascade;
 string window_name = "Capture - Face detection";
@@ -69,7 +69,7 @@ int main( int argc, const char** argv )
     else{
         printf(" --(!) No Webcam!");
     }
-    char* imageName = "test.jpg";
+    char* imageName = (char*)"test.jpg";
     
     Mat image;
     image = imread( imageName, 1 );
