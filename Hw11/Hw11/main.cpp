@@ -30,6 +30,7 @@ void detectAndDisplay( Mat frame );
 //-- Note, either copy these two files from opencv/data/haarscascades to your current folder, or change these locations
 String face_cascade_name = "/Users/Antonio/Documents/openCV/haarcascade_frontalface_alt.xml";
 String eyes_cascade_name = "/Users/Antonio/Documents/openCV/haarcascade_eye_tree_eyeglasses.xml";
+String profile_face_cascade_name = "/Users/Antonio/Documents/openCV/haarcascade_profileface.xml";
 CascadeClassifier face_cascade;
 CascadeClassifier eyes_cascade;
 string window_name = "Capture - Face detection";
@@ -40,20 +41,26 @@ RNG rng(12345);
  */
 int main( int argc, const char** argv )
 {
-    CvCapture* capture;
+//    CvCapture* capture;
+    VideoCapture cap(0);
     Mat frame;
     
     //-- 1. Load the cascades
     if( !face_cascade.load( face_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
+    // profile_face
+    if( !face_cascade.load( profile_face_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
     if( !eyes_cascade.load( eyes_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
     
+    
     //-- 2. Read the video stream
-    capture = cvCaptureFromCAM( -1 );
-    if( capture )
+//    capture = cvCaptureFromCAM( -1 );
+//    if( capture )
+    if( cap.isOpened() )
     {
         while( true )
         {
-            frame = cvQueryFrame( capture );
+//            frame = cvQueryFrame( capture );
+            cap >> frame;
             
             //-- 3. Apply the classifier to the frame
             if( !frame.empty() )
@@ -69,16 +76,16 @@ int main( int argc, const char** argv )
     else{
         printf(" --(!) No Webcam!");
     }
-    char* imageName = (char*)"test.jpg";
-    
-    Mat image;
-    image = imread( imageName, 1 );
-    
-    imshow( imageName, image );
-    
-    detectAndDisplay(image);
-    
-    waitKey(0);
+//    char* imageName = (char*)"test.jpg";
+//    
+//    Mat image;
+//    image = imread( imageName, 1 );
+//    
+//    imshow( imageName, image );
+//    
+//    detectAndDisplay(image);
+//    
+//    waitKey(0);
     return 0;
 }
 
